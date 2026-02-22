@@ -8,15 +8,21 @@ public class StudentRecordManager {
 		this.students = new TreeMap<Integer, Student>();	
 	}
 
-	public void addStudent(int id, Student student) {
-		students.put(id, student);
+	public void addStudent(int id, String name, double gpa) {
+		if (students.containsKey(id)) {
+			System.out.println("Student ID already exists");
+			return;
+		}
+
+		Student newStudent = new Student(name, gpa);
+		students.put(id, newStudent);
 	}
 
 	public void deleteStudentRecord(int id) {
 		students.remove(id);
 	}
 
-	public void updateStudentRecord(int id, int newGpa) {
+	public void updateStudentRecord(int id, double newGpa) {
 		Student student = students.get(id);
 
 		student.setGpa(newGpa);
